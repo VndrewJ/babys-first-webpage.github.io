@@ -1,0 +1,75 @@
+<!-- Little essay I wrote just to test out some basic html and css stuff -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heros, Villains, and the spectrum between them</title>
+    <link rel="stylesheet" href="csstest.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+</head>
+<body>
+    <blockquote class="lyric-quote">
+        "Dark knight feeling, die or be a hero Or live long enough to see yourself become a villain"
+        <cite> - Jay-Z, So Appalled - Kanye West (ft. Jay-Z) (2010)</cite>
+    </blockquote>
+
+    <section id="welcome-section">
+        <main id="content">
+            <h1>Heroes, Villains, and the Spectrum Between Them</h1>
+        </main>
+    </section>
+    
+
+    <section id="essay-section" style="display: none"></section>
+
+    <nav>
+        <button id="loadEssay">Click Here</button>
+    </nav>
+
+    <script>
+        const welcomeSection = document.getElementById("welcome-section");
+        const essaySection = document.getElementById("essay-section");
+        const toggleBtn = document.getElementById("loadEssay");
+
+        let essayLoaded = false;
+
+        toggleBtn.addEventListener("click", () => {
+            if (welcomeSection.style.display === "none") {
+                // Show welcome, hide essay
+                welcomeSection.style.display = "block";
+                essaySection.style.display = "none";
+                toggleBtn.textContent = "Read Essay";
+            } else {
+                // Load essay only if it's not already loaded
+                if (!essayLoaded) {
+                    fetch("essay.html")
+                        .then(response => {
+                            if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+                            return response.text();
+                        })
+                        .then(html => {
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(html, "text/html");
+                            essaySection.innerHTML = doc.body.innerHTML;
+                            essayLoaded = true;
+                        })
+                        .catch(err => {
+                            essaySection.innerHTML = `<p style="color:red;">Failed to load essay: ${err.message}</p>`;
+                        })
+                        .finally(() => {
+                            welcomeSection.style.display = "none";
+                            essaySection.style.display = "block";
+                            toggleBtn.textContent = "Back to Welcome Page";
+                        });
+                } else {
+                    welcomeSection.style.display = "none";
+                    essaySection.style.display = "block";
+                    toggleBtn.textContent = "Back to Welcome Page";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

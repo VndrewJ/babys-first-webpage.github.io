@@ -1,0 +1,120 @@
+/* What the hell am I doing??????? */
+
+/* General Stuff */
+body {
+    background-color: blanchedalmond;
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.6;
+}
+
+button {
+    background-color: saddlebrown;   /* Button color */
+    color: white;                    /* Text color */
+    border: none;                    /* Remove default border */
+    padding: 10px 20px;               /* Space inside button */
+    font-size: 1em;                   /* Text size */
+    border-radius: 8px;               /* Rounded corners */
+    cursor: pointer;                  /* Pointer on hover */
+    display: block;                   /* Makes centering possible */
+    margin: 20px auto;                 /* Centers button horizontally */
+    transition: background-color 0.3s ease; /* Smooth hover change */
+}
+
+button:hover {
+    background-color: peru;
+}
+
+pre {
+    font-family: 'Courier New', monospace;
+}
+
+h1 {
+    color: saddlebrown;
+    text-align: center;
+    font-family: serif;
+    margin-top: 20px;
+}
+
+blockquote.lyric-quote {
+    font-style: italic;
+    font-size: large;
+    text-align: center;
+}
+
+blockquote footer {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* Essay Section */
+
+.intro {
+    background-color: antiquewhite;
+    border-left: 5px solid saddlebrown;
+}
+
+.mean-girls {
+    background-color: #fbe6e6;
+    border-left: 5px solid palevioletred;
+}
+
+.dark-knight {
+    background-color: #e6e6f8;
+    border-left: 5px solid navy;
+}
+
+.analysis {
+    background-color: #fff6e0;
+    border-left: 5px solid goldenrod;
+}
+
+.conclusion {
+    background-color: #eaf6ea;
+    border-left: 5px solid darkgreen;
+}
+
+.text-wrapper {
+    max-width: 1100px;   
+    margin: 0 auto;      
+    padding: 20px 2rem;  
+}
+
+/* Images */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    gap: 50px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.image-container figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 250px;
+    text-align: center;
+}
+
+.image-container img {
+    height: 250px;
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+}
+
+.image-container img:hover {
+    transform: scale(1.05);
+}
+
+.image-container figcaption {
+    margin-top: 10px;
+    font-size: 0.95em;
+    color: #444;
+    font-style: italic;
+}
