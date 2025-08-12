@@ -9,6 +9,31 @@ body {
     line-height: 1.6;
 }
 
+#welcome-section.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+#welcome-section:not(.centered) {
+  display: block;
+  height: auto;
+  text-align: left;
+  padding: 20px;
+}
+
+nav button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 button {
     background-color: saddlebrown;   /* Button color */
     color: white;                    /* Text color */

@@ -10,23 +10,24 @@
     <link rel="manifest" href="favicon/site.webmanifest">
 </head>
 <body>
-    <blockquote class="lyric-quote">
-        "Dark knight feeling, die or be a hero Or live long enough to see yourself become a villain"
-        <cite> - Jay-Z, So Appalled - Kanye West (ft. Jay-Z) (2010)</cite>
-    </blockquote>
 
-    <section id="welcome-section">
+    <section id="welcome-section" class="centered">
+        <blockquote class="lyric-quote">
+            "Dark knight feeling, die or be a hero Or live long enough to see yourself become a villain"
+            <cite> - Jay-Z, So Appalled - Kanye West (ft. Jay-Z) (2010)</cite>
+        </blockquote>
+
         <main id="content">
             <h1>Heroes, Villains, and the Spectrum Between Them</h1>
         </main>
+
+        <nav>
+            <button id="loadEssay">Click Here</button>
+        </nav>
     </section>
     
 
     <section id="essay-section" style="display: none"></section>
-
-    <nav>
-        <button id="loadEssay">Click Here</button>
-    </nav>
 
     <script>
         const welcomeSection = document.getElementById("welcome-section");
@@ -34,15 +35,11 @@
         const toggleBtn = document.getElementById("loadEssay");
 
         let essayLoaded = false;
+        let showingWelcome = true;
 
         toggleBtn.addEventListener("click", () => {
-            if (welcomeSection.style.display === "none") {
-                // Show welcome, hide essay
-                welcomeSection.style.display = "block";
-                essaySection.style.display = "none";
-                toggleBtn.textContent = "Read Essay";
-            } else {
-                // Load essay only if it's not already loaded
+            if (showingWelcome) {
+                // Show essay + blockquote at top
                 if (!essayLoaded) {
                     fetch("essay.html")
                         .then(response => {
@@ -59,15 +56,23 @@
                             essaySection.innerHTML = `<p style="color:red;">Failed to load essay: ${err.message}</p>`;
                         })
                         .finally(() => {
-                            welcomeSection.style.display = "none";
+                            welcomeSection.classList.remove("centered");
                             essaySection.style.display = "block";
                             toggleBtn.textContent = "Back to Welcome Page";
+                            showingWelcome = false;
                         });
                 } else {
-                    welcomeSection.style.display = "none";
+                    welcomeSection.classList.remove("centered");
                     essaySection.style.display = "block";
                     toggleBtn.textContent = "Back to Welcome Page";
+                    showingWelcome = false;
                 }
+            } else {
+                // Back to welcome, hide essay
+                essaySection.style.display = "none";
+                welcomeSection.classList.add("centered");
+                toggleBtn.textContent = "Read Essay";
+                showingWelcome = true;
             }
         });
     </script>
